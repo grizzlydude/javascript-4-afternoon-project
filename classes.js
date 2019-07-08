@@ -32,9 +32,9 @@
 class Employee {
   constructor(first_name, last_name, email, age) {
     this.first_name = first_name,
-    this.last_name = last_name,
-    this.email = email,
-    this.age = age
+      this.last_name = last_name,
+      this.email = email,
+      this.age = age
   }
   makeWidget() {
     return `${this.first_name} ${this.last_name} Widget`
@@ -99,29 +99,29 @@ class ProgressiveManager extends Manager {
   constructor(first_name, last_name, email, age, reports, hire, fire) {
     super(first_name, last_name, email, age, reports, hire, fire)
     this.title = 'Not a manager',
-    this.bonus = 0
+      this.bonus = 0
   }
   hire = function hire(Employee) {
     this.reports.push(Employee)
-    if (this.reports.length === 1 && this.reports.length <= 3){
+    if (this.reports.length === 1 && this.reports.length <= 3) {
       return this.title = 'Barely Manager'
     }
-    if (this.reports.length >= 4 && this.reports.length <= 10){
+    if (this.reports.length >= 4 && this.reports.length <= 10) {
       return this.title = 'Mostly Manager'
     }
-    if (this.reports.length >= 11 && this.reports.length <= 50){
+    if (this.reports.length >= 11 && this.reports.length <= 50) {
       return this.title = 'Manager'
     }
-    if (this.reports.length >= 51 && this.reports.length <= 100){
+    if (this.reports.length >= 51 && this.reports.length <= 100) {
       return this.title = 'Manager Plus'
     }
-    if (this.reports.length >= 101){
+    if (this.reports.length >= 101) {
       return this.title = 'Bestest Manager'
     }
   }
-  fire = function fire(Employee) { 
+  fire = function fire(Employee) {
     this.reports.splice(Employee, 1)
-    if (this.reports.length++){
+    if (this.reports.length++) {
       return this.bonus += 100
     }
   }
@@ -153,25 +153,26 @@ class ProgressiveManager extends Manager {
 */
 
 class Machine {
-  constructor(widgets_made_count, wear_and_tear_count, needs_reboot) {
+  constructor() {
     this.widgets_made_count = 0,
       this.wear_and_tear_count = 0,
       this.needs_reboot = false
   }
-  makeWidget = function makeWidget(number){
-    this.widgets_made_count += number
-    for (let i in this.widgets_made_count){
-      if (this.widgets_made_count >=50){
-        return this.wear_and_tear_count++
+  makeWidgets = function makeWidgets(number) {
+    for (let i = 0; i < number; i++) {
+      this.widgets_made_count++
+      if (this.widgets_made_count % 50 === 0) {
+        this.wear_and_tear_count++
       }
     }
   }
-  fixMachine = function fixMachine(){
-    return needs_reboot = true
+  fixMachine = function fixMachine() {
+    this.needs_reboot = true
   }
-  reboot = () => {
-
+  reboot = function reboot() {
+    return () => {
+      this.wear_and_tear_count = this.wear_and_tear_count - 10
+      this.needs_reboot = false
+    }
   }
 }
-
-
